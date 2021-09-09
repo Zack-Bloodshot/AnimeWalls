@@ -45,8 +45,8 @@ async def kang_reddit():
         async for i in new:
           if i.url != last:
             hashes = await get_hash(i.title)
-            await bot.send_message(file=i.url, caption=hashes)
-            await bot.send_message(file=i.url, caption=hashes, force_document=True)
+            await bot.send_message(file=i.url, text=hashes)
+            await bot.send_message(file=i.url, text=hashes, force_document=True)
         await asyncio.sleep(60)    
         print("nothing")
 
