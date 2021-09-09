@@ -5,7 +5,9 @@ import asyncpraw
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
-@bot.on(events.NewMessage(pattern='sendonetime', incoming=True)
+loop = asyncio.get_event_loop()
+
+@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
 async def sendone():
   channel = await bot.get_entity(f't.me/{AnimeWallsForU}')
   text = 'The Walls here: '
@@ -42,7 +44,6 @@ async def get_hash(name):
       await get.edit(rtext)
     return to_return
 
-loop = asyncio.get_event_loop()
 
 async def kang_reddit():
     channel = await bot.get_entity(f"t.me/{AnimeWallsForU}")
