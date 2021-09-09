@@ -19,7 +19,7 @@ async def get_hash(name):
   if ani == 'Original':
     to_return = f'{hek[0]} #og'
     has = '#og'
-    get = await bot.get_messages(channel, ids=2)
+    get = await bot.get_messages(channel, ids=1)
     rtext = get.raw_text
     spl = get.raw_text.split('The Walls here:\n', 1)[1]
     spl2 = spl.split('\n')
