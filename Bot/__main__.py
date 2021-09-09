@@ -4,10 +4,6 @@ import asyncio
 import asyncpraw
 import logging 
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
-
-logger = logging.getLogger('__name__')
-
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
 loop = asyncio.get_event_loop()
@@ -68,7 +64,10 @@ async def kang_reddit():
 async def start(event):
     await bot.send_message(event.chat_id, "Is on ^_-")
 
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
-#loop.run_until_complete(kang_reddit())
+logger = logging.getLogger("__name__")
+
+loop.run_until_complete(kang_reddit())
 
 bot.run_until_disconnected()
