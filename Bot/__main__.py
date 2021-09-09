@@ -9,13 +9,13 @@ loop = asyncio.get_event_loop()
 
 @bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
 async def sendone():
-  channel = await bot.get_entity(f't.me/{AnimeWallsForU}')
+  channel = await bot.get_entity(f't.me/AnimeWallsForU')
   text = 'The Walls here: '
   await bot.send_message(channel, text)
   #await bot.send_message(channel, text)
 
 async def get_hash(name):
-  channel = await bot.get_entity(f't.me/{AnimeWallsForU}')
+  channel = await bot.get_entity(f't.me/AnimeWallsForU')
   hek = name.split('[', 1)
   ani = hek[1].split(']', 1)[0]
   if ani == 'Original':
@@ -46,7 +46,7 @@ async def get_hash(name):
 
 
 async def kang_reddit():
-    channel = await bot.get_entity(f"t.me/{AnimeWallsForU}")
+    channel = await bot.get_entity(f"t.me/AnimeWallsForU")
     last = ''
     while True:
         subred = await reddit.subreddit(Animewallpaper)
