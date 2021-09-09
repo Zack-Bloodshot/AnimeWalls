@@ -2,6 +2,7 @@ from telethon import events, Button
 from Bot import bot, API_ID, API_HASH, BOT_TOKEN, CLIENT_ID, CLIENT_SECRET, USER_AGENT, logger
 import asyncio
 import asyncpraw
+import requests
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
@@ -13,6 +14,14 @@ async def sendone(mikey):
   text = 'The Walls here:\n\n\t\t#og'
   await bot.send_message(channel, text)
   #await bot.send_message(channel, text)
+
+def down(url: str):
+  r = requests.get(url)
+  ext = url[-3:]
+  file = open(f'image.{ext}', 'wb')
+  file.write(r.content)
+  file.close()
+  return f'image.{ext}'
 
 async def get_hash(name):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
@@ -56,8 +65,10 @@ async def kang_reddit():
           if i.url != last:
             hashes = await get_hash(i.title)
             print(i.url)
-            await bot.send_message(channel,hashes, file=i.url)
-            await bot.send_message(channel,hashes, file=i.url, force_document=True)
+            dl = down(i.url)
+            await bot.send_message(channel,hashes, file=dl)
+            await bot.send_message(channel,hashes, file=dl, force_document=True)
+            os.remove(dl)
             last = i.url
         await asyncio.sleep(60)    
         print("loop comp")

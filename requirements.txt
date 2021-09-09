@@ -3,3 +3,4 @@ asyncpraw
 requests
 bs4
 python-dotenv
+hachoir
