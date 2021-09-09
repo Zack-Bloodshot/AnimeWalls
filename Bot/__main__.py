@@ -59,4 +59,6 @@ async def start(event):
 
 loop.run_until_complete(kang_reddit())
 
+bot.start()
+
 bot.run_until_disconnected()
