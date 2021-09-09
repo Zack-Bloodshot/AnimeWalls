@@ -12,7 +12,7 @@ logger = logging.getLogger("__name__")
 
 loop = asyncio.get_event_loop()
 
-@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
+#@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
 async def sendone(mikey):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
   text = 'The Walls here: '
