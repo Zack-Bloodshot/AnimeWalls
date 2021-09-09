@@ -2,13 +2,16 @@ from telethon import events, Button
 from Bot import bot, API_ID, API_HASH, BOT_TOKEN, CLIENT_ID, CLIENT_SECRET, USER_AGENT
 import asyncio
 import asyncpraw
+import logging 
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
 loop = asyncio.get_event_loop()
 
 @bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
-async def sendone():
+async def sendone(mikey):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
   text = 'The Walls here: '
   await bot.send_message(channel, text)
