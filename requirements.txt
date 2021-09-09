@@ -1,0 +1,5 @@
+telethon 
+asyncpraw
+request
+bs4
+python-dotenv
