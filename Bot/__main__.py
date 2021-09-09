@@ -22,8 +22,16 @@ async def get_hash(name):
     to_return = f'{hek[0]} #og'
     return to_return
   else:
-    to_return = f'#{hek[0].lower().replace(" ", "")}'
-    nime = f'#{ani.lower().replace(" ", "")}'
+    hep = hek[0].lower().replace('"', '')
+    hep = hep.replace('/', '')
+    hep = hep.replace(' ', '')
+    hep = hep.replace('-', '')
+    to_return = f'#{hep}'
+    repa = ani.lower().replace('"', '')
+    repa = repa.replace("/", '')
+    repa = repa.replace(" ", '')
+    repa = repa.replace('-', '')
+    nime = f'#{repa}'
     to_return = to_return + ' ' + nime 
     get = await bot.get_messages(channel, ids=4)
     rtext = get.raw_text
