@@ -57,9 +57,9 @@ async def kang_reddit():
           try:
             await bot.send_message(channel,hashes, file=i.url)
             await bot.send_message(channel,hashes, file=i.url, force_document=True)
-          except Exception:
-            print(Exception)
-            last = i.url
+          except Exception as e:
+            print(e)
+          last = i.url
         await asyncio.sleep(60)    
         print("nothing")
 
