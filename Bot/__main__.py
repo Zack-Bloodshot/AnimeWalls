@@ -71,10 +71,17 @@ async def kang_reddit():
           if i.url != last:
             hashes = await get_hash(i.title)
             print(i.url)
-            dl = down(i.url, hashes)
-            await bot.send_message(channel,hashes, file=dl)
-            await bot.send_message(channel,hashes, file=dl, force_document=True)
-            os.remove(dl)
+            if i.is_gallery:
+              for u in i.media_metadata:
+                dl = down(i.media_metadata[u]['s']['u'])
+                await bot.send_message(channel,hashes, file=dl)
+                await bot.send_message(channel,hashes, file=dl, force_document=True)
+                os.remove(dl)
+            else:
+              dl = down(i.url, hashes)
+              await bot.send_message(channel,hashes, file=dl)
+              await bot.send_message(channel,hashes, file=dl, force_document=True)
+              os.remove(dl)
             last = i.url
         await asyncio.sleep(60)    
         print("loop comp")
