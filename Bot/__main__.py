@@ -25,7 +25,7 @@ async def get_hash(name):
     to_return = f'#{hek[0].lower().replace(" ", "")}'
     nime = f'#{ani.lower().replace(" ", "")}'
     to_return += nime 
-    get = await bot.get_messages(channel, ids=3)
+    get = await bot.get_messages(channel, ids=4)
     rtext = get.raw_text
     spl = get.raw_text.split('The Walls here:\n', 1)[1]
     spl2 = spl.split('\n')
