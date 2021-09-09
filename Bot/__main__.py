@@ -49,7 +49,7 @@ async def kang_reddit():
     channel = await bot.get_entity(f"t.me/AnimeWallsForU")
     last = ''
     while True:
-        subred = await reddit.subreddit(Animewallpaper)
+        subred = await reddit.subreddit("Animewallpaper")
         new = subred.new(limit = 1)
         async for i in new:
           if i.url != last:
