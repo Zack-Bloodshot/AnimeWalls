@@ -1,5 +1,5 @@
 telethon 
 asyncpraw
-request
+requests
 bs4
 python-dotenv
