@@ -3,6 +3,7 @@ from Bot import bot, API_ID, API_HASH, BOT_TOKEN, CLIENT_ID, CLIENT_SECRET, USER
 import asyncio
 import asyncpraw
 import requests
+import os
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
@@ -15,13 +16,15 @@ async def sendone(mikey):
   await bot.send_message(channel, text)
   #await bot.send_message(channel, text)
 
-def down(url: str):
+def down(url: str, hashes: str):
   r = requests.get(url)
-  ext = url[-3:]
-  file = open(f'image.{ext}', 'wb')
+  file_name = hashes.replace('#', '')
+  file_name = file_name.replace(' ', '_')
+  file_name = f'{file_name}.{url[-3:]}''
+  file = open(file_name, 'wb')
   file.write(r.content)
   file.close()
-  return f'image.{ext}'
+  return file_name
 
 async def get_hash(name):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
@@ -65,7 +68,7 @@ async def kang_reddit():
           if i.url != last:
             hashes = await get_hash(i.title)
             print(i.url)
-            dl = down(i.url)
+            dl = down(i.url, hashes)
             await bot.send_message(channel,hashes, file=dl)
             await bot.send_message(channel,hashes, file=dl, force_document=True)
             os.remove(dl)
