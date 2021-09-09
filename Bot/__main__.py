@@ -53,7 +53,7 @@ async def kang_reddit():
         async for i in new:
           if i.url != last:
             hashes = await get_hash(i.title)
-            print(i.url)
+            #print(i.url)
             await bot.send_message(channel,hashes, file=i.url)
             await bot.send_message(channel,hashes, file=i.url, force_document=True)
             last = i.url
