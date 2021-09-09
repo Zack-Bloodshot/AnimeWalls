@@ -1,10 +1,14 @@
+import logging 
 from telethon import events, Button
 from Bot import bot, API_ID, API_HASH, BOT_TOKEN, CLIENT_ID, CLIENT_SECRET, USER_AGENT
 import asyncio
 import asyncpraw
-import logging 
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
+
+logger = logging.getLogger("__name__")
 
 loop = asyncio.get_event_loop()
 
@@ -22,7 +26,7 @@ async def get_hash(name):
   if ani == 'Original':
     to_return = f'{hek[0]} #og'
     has = '#og'
-    get = await bot.get_messages(channel, ids=1)
+    get = await bot.get_messages(channel, ids=3)
     rtext = get.raw_text
     spl = get.raw_text.split('The Walls here:\n', 1)[1]
     spl2 = spl.split('\n')
@@ -64,9 +68,6 @@ async def kang_reddit():
 async def start(event):
     await bot.send_message(event.chat_id, "Is on ^_-")
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
-
-logger = logging.getLogger("__name__")
 
 loop.run_until_complete(kang_reddit())
 
