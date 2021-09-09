@@ -20,7 +20,10 @@ def down(url: str, hashes: str):
   r = requests.get(url)
   file_name = hashes.replace('#', '')
   file_name = file_name.replace(' ', '_')
-  file_name = f'{file_name}.{url[-3:]}'
+  if url[-3:] == ('jpg' or 'png'):
+    file_name = f'{file_name}.{url[-3:]}'
+  else:
+    file_name = f'{file_name}.jpg'
   file = open(file_name, 'wb')
   file.write(r.content)
   file.close()
