@@ -73,7 +73,7 @@ async def kang_reddit():
             print(i.url)
             if i.is_gallery:
               for u in i.media_metadata:
-                dl = down(i.media_metadata[u]['s']['u'])
+                dl = down(i.media_metadata[u]['s']['u'], hashes)
                 await bot.send_message(channel,hashes, file=dl)
                 await bot.send_message(channel,hashes, file=dl, force_document=True)
                 os.remove(dl)
