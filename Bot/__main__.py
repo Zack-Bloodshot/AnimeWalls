@@ -7,7 +7,7 @@ reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, 
 
 loop = asyncio.get_event_loop()
 
-@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
+#@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
 async def sendone(mikey):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
   text = 'The Walls here:\n\n\t\t#og'
@@ -55,6 +55,6 @@ async def start(event):
     await bot.send_message(event.chat_id, "Is on ^_-")
 
 
-#loop.run_until_complete(kang_reddit())
+loop.run_until_complete(kang_reddit())
 
 bot.run_until_disconnected()
