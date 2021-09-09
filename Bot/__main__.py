@@ -20,7 +20,7 @@ def down(url: str, hashes: str):
   r = requests.get(url)
   file_name = hashes.replace('#', '')
   file_name = file_name.replace(' ', '_')
-  file_name = f'{file_name}.{url[-3:]}''
+  file_name = f'{file_name}.{url[-3:]}'
   file = open(file_name, 'wb')
   file.write(r.content)
   file.close()
