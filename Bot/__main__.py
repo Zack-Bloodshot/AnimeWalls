@@ -87,8 +87,9 @@ async def kang_reddit():
               await bot.send_message(channel,hashes, file=dl, force_document=True)
               os.remove(dl)
             last = i.url
-        await asyncio.sleep(60)    
-        print("loop comp")
+            print('Loop complete!')
+        await asyncio.sleep(20)    
+        print("New Loop!")
 
 @bot.on(events.NewMessage(pattern="/start"))
 async def start(event):
