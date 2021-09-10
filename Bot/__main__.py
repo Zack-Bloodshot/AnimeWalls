@@ -71,12 +71,8 @@ async def kang_reddit():
           if i.url != last:
             hashes = await get_hash(i.title)
             print(i.url)
-            if i.is_gallery:
-              for u in i.media_metadata:
-                dl = down(i.media_metadata[u]['s']['u'], hashes)
-                await bot.send_message(channel,hashes, file=dl)
-                await bot.send_message(channel,hashes, file=dl, force_document=True)
-                os.remove(dl)
+            if i.url[-3:] != ('jpg' or 'png'):
+              pass
             else:
               dl = down(i.url, hashes)
               await bot.send_message(channel,hashes, file=dl)
