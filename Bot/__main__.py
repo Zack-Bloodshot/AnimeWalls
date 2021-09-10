@@ -10,6 +10,8 @@ reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, 
 
 loop = asyncio.get_event_loop()
 
+mylog = logging.getLogger('animewalls')
+
 #@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
 async def sendone(mikey):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
@@ -87,9 +89,9 @@ async def kang_reddit():
               await bot.send_message(channel,hashes, file=dl, force_document=True)
               os.remove(dl)
             last = i.url
-            print('Loop complete!')
+            mylog.info('Loop complete!')
         await asyncio.sleep(20)    
-        print("New Loop!")
+        mylog.info("New Loop!")
 
 @bot.on(events.NewMessage(pattern="/start"))
 async def start(event):
