@@ -64,6 +64,7 @@ async def get_hash(name):
 async def kang_reddit():
     channel = await bot.get_entity(f"t.me/AnimeWallsForU")
     last = ''
+    li = ['jpg', 'png']
     while True:
         subred = await reddit.subreddit("Animewallpaper")
         new = subred.new(limit = 1)
@@ -71,8 +72,8 @@ async def kang_reddit():
           if i.url != last:
             hashes = await get_hash(i.title)
             print(i.url)
-            if i.url[-3:] != ('jpg' or 'png'):
-              pass
+            if i.url[-3:] not in li:
+              print('passing...')
             else:
               dl = down(i.url, hashes)
               await bot.send_message(channel,hashes, file=dl)
