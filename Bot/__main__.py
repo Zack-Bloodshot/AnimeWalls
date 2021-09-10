@@ -4,6 +4,7 @@ import asyncio
 import asyncpraw
 import requests
 import os
+from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
@@ -75,8 +76,14 @@ async def kang_reddit():
             if i.url[-3:] not in li:
               print('passing...')
             else:
-              dl = down(i.url, hashes)
-              await bot.send_message(channel,hashes, file=dl)
+              dl = down(i.url, hhashes
+              try:
+                await bot.send_message(channel,hashes, file=dl)
+              except PhotoSaveFileInvalidError:
+                try:
+                  await bot.send_message(channel, hashes, file=i.url)
+                except Exception:
+                  print('Excepted!')
               await bot.send_message(channel,hashes, file=dl, force_document=True)
               os.remove(dl)
             last = i.url
