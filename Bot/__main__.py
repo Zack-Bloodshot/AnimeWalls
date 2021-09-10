@@ -46,12 +46,14 @@ async def get_hash(name):
     hep = hep.replace(' ', '')
     hep = hep.replace('-', '')
     hep = hep.replace("'", '')
+    hep = hep.replace(":", '')
     to_return = f'#{hep}'
     repa = ani.lower().replace('"', '')
     repa = repa.replace("/", '')
     repa = repa.replace(" ", '')
     repa = repa.replace('-', '')
     repa = repa.replace("'", '')
+    repa = repa.replace(":", '')
     nime = f'#{repa}'
     to_return = to_return + ' ' + nime 
     get = await bot.get_messages(channel, ids=4)
