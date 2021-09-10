@@ -76,7 +76,7 @@ async def kang_reddit():
             if i.url[-3:] not in li:
               print('passing...')
             else:
-              dl = down(i.url, hhashes
+              dl = down(i.url, hashes)
               try:
                 await bot.send_message(channel,hashes, file=dl)
               except PhotoSaveFileInvalidError:
