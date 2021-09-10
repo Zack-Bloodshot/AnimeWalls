@@ -5,6 +5,7 @@ import asyncpraw
 import requests
 import os
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
+import logging
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
