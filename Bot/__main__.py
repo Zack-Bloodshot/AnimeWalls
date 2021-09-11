@@ -151,7 +151,7 @@ async def send_wall():
               except Exception:
                 print('Excepted!')
             await bot.send_message(channel,hashes, file=path, force_document=True)
-              os.remove(path)
+            os.remove(path)
             mylog.info('Loop Success')
             mylog.info(f'Loop Info: Chose: {c}')
         await asyncio.sleep(20)    
