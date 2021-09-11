@@ -139,7 +139,7 @@ async def send_wall():
         if c == 'danbooru':
           path, hashes, url = await danparse()
         else:
-          path, hashes, url = await reddit_kang()
+          path, hashes, url = await kang_reddit()
         if (path is None) or (hashes is None):
           mylog.info('Passed!, Didn\'t got info!')
         else:
