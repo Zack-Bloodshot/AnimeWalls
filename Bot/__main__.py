@@ -109,7 +109,7 @@ async def kang_reddit():
   subred = await reddit.subreddit("Animewallpaper")
   new = subred.new(limit = 1)
   async for i in new:
-    if i.url != last_red:
+    if not i.url != last_red:
       hashes = await get_red_hash(i.title)
       print(i.url)
       last_red = i.url 
@@ -135,7 +135,7 @@ async def send_wall():
     last = ''
     while True:
         sources = ['danbooru', 'reddit']
-        c = random.choices(sources)
+        c = random.choice(sources)
         if c == 'danbooru':
           path, hashes, url = await danparse()
         else:
