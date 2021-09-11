@@ -75,7 +75,7 @@ async def get_dan_hash(characters, tscpy):
   count = 0
   text = ''
   if tscpy.lower() == 'original':
-    return f'{chars} #og'
+    return f'{characters} #og'
   for u in chars:
       u = u.replace('_', '')
       u = u.replace('-', '')
@@ -93,6 +93,7 @@ async def get_dan_hash(characters, tscpy):
   tscpy = tscpy.replace('-', '')
   tscpy = tscpy.replace('/', '')
   tscpy = tscpy.split(' ', 1)[0]
+  tscpy = tscpy.split('(', 1)[0]
   tscpy = f'#{tscpy}'
   text+= tscpy
   get = await bot.get_messages(channel, ids=4)
@@ -112,7 +113,7 @@ async def kang_reddit():
   new = subred.new(limit = 1)
   res = []
   async for i in new:
-    if not i.url != last_red:
+    if i.url != last_red:
       hashes = await get_red_hash(i.title)
       print(i.url)
       last_red = i.url 
