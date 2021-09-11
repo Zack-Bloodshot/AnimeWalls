@@ -83,6 +83,7 @@ async def get_dan_hash(characters, tscpy):
       u = u.replace(':', '')
       u = u.replace("'", '')
       u = u.replace("'", '')
+      u = u.replace('!', '')
       try:
         u = u.split('(', )[0]
       except IndexError:
@@ -95,6 +96,7 @@ async def get_dan_hash(characters, tscpy):
   tscpy = tscpy.replace('/', '')
   tscpy = tscpy.replace(':', '')
   tscpy = tscpy.replace("'", '')
+  tscpy = tscpy.replace('!', '')
   tscpy = tscpy.split(' ', 1)[0]
   tscpy = tscpy.split('(', 1)[0]
   tscpy = f'#{tscpy}'
