@@ -113,16 +113,17 @@ async def kang_reddit():
       hashes = await get_red_hash(i.title)
       print(i.url)
       last_red = i.url 
+      url = i.url
       if i.url[-3:] not in li:
         print('passing...')
       else:
         dl = down(i.url, hashes)
-        return dl, hashes, i.url
+        return dl, hashes, url
       
 async def danparse():
   global last_dan
   rndpg = random.randint(1, 1000)
-  posts = dn.post_list(tags='rating:s', page=rndpg, limit=1)
+  posts = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
   if post['large_file_url'] != last_dan:
     hashes = await get_dan_hash(posts['tag_string_characters'], posts['tag_string_copyright'])
     last_dan = post['large_file_url']
