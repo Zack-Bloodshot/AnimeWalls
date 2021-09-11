@@ -72,6 +72,7 @@ async def get_red_hash(name):
 async def get_dan_hash(characters, tscpy):
   chars = characters.split(" ")
   count = 0
+  text = ''
   if tscpy.lower() == 'original':
     return f'{chars} #og'
   for u in chars:
