@@ -149,7 +149,7 @@ async def send_wall():
           result = await kang_reddit()
         if len(result) < 3:
           mylog.info('Passed!, Didn\'t got info!')
-        mylog.info(f'Request: {result}')
+          mylog.info(f'Request: {result}')
         else:
             try:
               await bot.send_message(channel,hashes, file=path)
