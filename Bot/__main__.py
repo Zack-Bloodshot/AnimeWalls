@@ -40,7 +40,10 @@ def down(url: str, hashes: str):
 async def get_red_hash(name):
   channel = await bot.get_entity(f't.me/AnimeWallsForU')
   hek = name.split('[', 1)
-  ani = hek[1].split(']', 1)[0]
+  try:
+    ani = hek[1].split(']', 1)[0]
+  except IndexError:
+    ani = '#nontag'
   if ani == 'Original':
     to_return = f'{hek[0]} #og'
     return to_return
