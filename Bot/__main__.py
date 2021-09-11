@@ -80,6 +80,7 @@ async def get_dan_hash(characters, tscpy):
       u = u.replace('_', '')
       u = u.replace('-', '')
       u = u.replace('/', '')
+      u = u.replace(':', '')
       u = u.replace("'", '')
       u = u.replace("'", '')
       try:
@@ -92,6 +93,7 @@ async def get_dan_hash(characters, tscpy):
   tscpy = tscpy.replace('_', '')
   tscpy = tscpy.replace('-', '')
   tscpy = tscpy.replace('/', '')
+  tscpy = tscpy.replace(':', '')
   tscpy = tscpy.split(' ', 1)[0]
   tscpy = tscpy.split('(', 1)[0]
   tscpy = f'#{tscpy}'
