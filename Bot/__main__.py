@@ -148,18 +148,18 @@ async def send_wall():
         else:
           result = await kang_reddit()
         if len(result) < 3:
-          mylog.info('Passed!, Didn\'t got info!')
+          mylog.info(f'Passed!, Didn\'t got info! Choice: {c}')
           mylog.info(f'Request: {result}')
         else:
             try:
-              await bot.send_message(channel,hashes, file=path)
+              await bot.send_message(channel, result[1], file=result[0])
             except PhotoSaveFileInvalidError:
               try:
-                await bot.send_message(channel, hashes, file=url)
+                await bot.send_message(channel, result[1], file=result[2])
               except Exception:
                 print('Excepted!')
-            await bot.send_message(channel,hashes, file=path, force_document=True)
-            os.remove(path)
+            await bot.send_message(channel, result[1], file=result[0], force_document=True)
+            os.remove(result[0])
             mylog.info('Loop Success')
             mylog.info(f'Loop Info: Chose: {c}')
         await asyncio.sleep(20)    
