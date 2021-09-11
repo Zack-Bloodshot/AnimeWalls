@@ -162,7 +162,7 @@ async def start(event):
     await bot.send_message(event.chat_id, "Is on ^_-")
 
 
-loop.run_until_complete(kang_reddit())
+loop.run_until_complete(send_wall())
 
 bot.start()
 
