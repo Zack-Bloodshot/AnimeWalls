@@ -128,7 +128,7 @@ async def danparse():
   res = []
   for post in posts:
     if post['large_file_url'] != last_dan:
-      hashes = await get_dan_hash(post['tag_string_characters'], post['tag_string_copyright'])
+      hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
       last_dan = post['large_file_url']
       dl = down(post['large_file_url'], hashes)
       res = [dl, hashes, post['large_file_url']]
