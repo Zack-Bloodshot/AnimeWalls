@@ -123,12 +123,13 @@ async def kang_reddit():
 async def danparse():
   global last_dan
   rndpg = random.randint(1, 1000)
-  post = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
-  if post['large_file_url'] != last_dan:
-    hashes = await get_dan_hash(posts['tag_string_characters'], posts['tag_string_copyright'])
-    last_dan = post['large_file_url']
-    dl = down(post['large_file_url'], hashes)
-    return dl, hashes, post['large_file_url']
+  posts = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
+  for post in posts:
+    if post['large_file_url'] != last_dan:
+      hashes = await get_dan_hash(posts['tag_string_characters'], posts['tag_string_copyright'])
+      last_dan = post['large_file_url']
+      dl = down(post['large_file_url'], hashes)
+      return dl, hashes, post['large_file_url']
     
 
 async def send_wall():
