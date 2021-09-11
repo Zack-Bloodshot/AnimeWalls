@@ -70,24 +70,25 @@ async def get_red_hash(name):
     return to_return
 
 async def get_dan_hash(characters, tscpy):
+  channel = await bot.get_entity(f't.me/AnimeWallsForU')
   chars = characters.split(" ")
   count = 0
   text = ''
   if tscpy.lower() == 'original':
     return f'{chars} #og'
   for u in chars:
-    try:
       u = u.replace('_', '')
       u = u.replace('-', '')
       u = u.replace('/', '')
       u = u.replace("'", '')
       u = u.replace("'", '')
+      try:
+        u = u.split('(', )[0]
+      except IndexError:
+        u = u
       if not u == '':
-        text += f'#{char[count].replace("_", "").split("(", 1)[0]}'
+        text += f'#{u}'
         text += ' '
-      count += 1
-    except IndexError:
-      break 
   tscpy = tscpy.replace('_', '')
   tscpy = tscpy.replace('-', '')
   tscpy = tscpy.replace('/', '')
@@ -148,6 +149,7 @@ async def send_wall():
           result = await kang_reddit()
         if len(result) < 3:
           mylog.info('Passed!, Didn\'t got info!')
+        mylog.info(f'Request: {result}')
         else:
             try:
               await bot.send_message(channel,hashes, file=path)
