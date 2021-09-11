@@ -123,7 +123,7 @@ async def kang_reddit():
 async def danparse():
   global last_dan
   rndpg = random.randint(1, 1000)
-  posts = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
+  post = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
   if post['large_file_url'] != last_dan:
     hashes = await get_dan_hash(posts['tag_string_characters'], posts['tag_string_copyright'])
     last_dan = post['large_file_url']
