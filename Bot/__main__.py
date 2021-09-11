@@ -103,7 +103,7 @@ async def get_dan_hash(characters, tscpy):
       await get.edit(rtext)
   return text
 
-async kang_reddit():
+async def kang_reddit():
   global last_red
   li = ['jpg', 'png']
   subred = await reddit.subreddit("Animewallpaper")
@@ -141,7 +141,7 @@ async def send_wall():
         else:
           path, hashes, url = await reddit_kang()
         if (path is None) or (hashes is None):
-          pass
+          mylog.info('Passed!, Didn\'t got info!')
         else:
             try:
               await bot.send_message(channel,hashes, file=path)
@@ -152,7 +152,8 @@ async def send_wall():
                 print('Excepted!')
             await bot.send_message(channel,hashes, file=path, force_document=True)
               os.remove(path)
-            mylog.info('Loop Success!')
+            mylog.info('Loop Success')
+            mylog.info(f'Loop Info: Chose: {c}')
         await asyncio.sleep(20)    
         mylog.info("New Loop!")
 
