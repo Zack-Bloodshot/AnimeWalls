@@ -168,7 +168,7 @@ async def send_wall():
             os.remove(result[0])
             mylog.info('Loop Success')
             mylog.info(f'Loop Info: Chose: {c}')
-        await asyncio.sleep(20)    
+        await asyncio.sleep(60)    
         mylog.info("New Loop!")
 
 @bot.on(events.NewMessage(pattern="/start"))
