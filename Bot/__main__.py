@@ -108,28 +108,31 @@ async def kang_reddit():
   li = ['jpg', 'png']
   subred = await reddit.subreddit("Animewallpaper")
   new = subred.new(limit = 1)
+  res = []
   async for i in new:
     if not i.url != last_red:
       hashes = await get_red_hash(i.title)
       print(i.url)
       last_red = i.url 
-      url = i.url
       if i.url[-3:] not in li:
         print('passing...')
       else:
         dl = down(i.url, hashes)
-        return dl, hashes, url
+        res = [dl, hashes, i.url]
+  return res 
       
 async def danparse():
   global last_dan
   rndpg = random.randint(1, 1000)
   posts = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
+  res = []
   for post in posts:
     if post['large_file_url'] != last_dan:
-      hashes = await get_dan_hash(posts['tag_string_characters'], posts['tag_string_copyright'])
+      hashes = await get_dan_hash(post['tag_string_characters'], post['tag_string_copyright'])
       last_dan = post['large_file_url']
       dl = down(post['large_file_url'], hashes)
-      return dl, hashes, post['large_file_url']
+      res = [dl, hashes, post['large_file_url']]
+  return res
     
 
 async def send_wall():
@@ -139,10 +142,10 @@ async def send_wall():
         sources = ['danbooru', 'reddit']
         c = random.choice(sources)
         if c == 'danbooru':
-          path, hashes, url = await danparse()
+          result = await danparse()
         else:
-          path, hashes, url = await kang_reddit()
-        if (path is None) or (hashes is None):
+          result = await kang_reddit()
+        if len(result) < 3:
           mylog.info('Passed!, Didn\'t got info!')
         else:
             try:
