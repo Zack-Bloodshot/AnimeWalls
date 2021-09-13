@@ -28,10 +28,10 @@ def down(url: str, hashes: str):
   r = requests.get(url)
   file_name = hashes.replace('#', '')
   file_name = file_name.replace(' ', '_')
-  if url[-3:] == ('jpg' or 'png'):
+  if url[-3:] in ('jpg', 'png'):
     file_name = f'{file_name[:20]}_@AnimeWallsForU.{url[-3:]}'
   else:
-    file_name = f'{file_namen[:20]}_@AnimeWallsForU.jpg'
+    file_name = f'{file_name[:20]}_@AnimeWallsForU.jpg'
   file = open(file_name, 'wb')
   file.write(r.content)
   file.close()
