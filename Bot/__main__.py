@@ -7,6 +7,7 @@ import os
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 import logging
 import random
+import re
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
@@ -48,19 +49,9 @@ async def get_red_hash(name):
     to_return = f'{hek[0]} #og'
     return to_return
   else:
-    hep = hek[0].lower().replace('"', '')
-    hep = hep.replace('/', '')
-    hep = hep.replace(' ', '')
-    hep = hep.replace('-', '')
-    hep = hep.replace("'", '')
-    hep = hep.replace(":", '')
+    hep = re.sub(r'[^\W]+', '', hek[0].lower())
     to_return = f'#{hep}'
-    repa = ani.lower().replace('"', '')
-    repa = repa.replace("/", '')
-    repa = repa.replace(" ", '')
-    repa = repa.replace('-', '')
-    repa = repa.replace("'", '')
-    repa = repa.replace(":", '')
+    repa = re.sub(r'[^\W]+', '', ani.lower())
     nime = f'#{repa}'
     to_return = to_return + ' ' + nime 
     get = await bot.get_messages(channel, ids=4)
@@ -80,28 +71,17 @@ async def get_dan_hash(characters, tscpy):
   if tscpy.lower() == 'original':
     return f'{characters} #og'
   for u in chars:
-      u = u.replace('_', '')
-      u = u.replace('-', '')
-      u = u.replace('/', '')
-      u = u.replace(':', '')
-      u = u.replace("'", '')
-      u = u.replace("'", '')
-      u = u.replace('!', '')
       try:
         u = u.split('(', )[0]
       except IndexError:
         u = u
+      u = re.sub(r'[^\W]+', '', u.lower())
       if not u == '':
         text += f'#{u}'
         text += ' '
-  tscpy = tscpy.replace('_', '')
-  tscpy = tscpy.replace('-', '')
-  tscpy = tscpy.replace('/', '')
-  tscpy = tscpy.replace(':', '')
-  tscpy = tscpy.replace("'", '')
-  tscpy = tscpy.replace('!', '')
+  tscpy = tscpy.split('(', 1)[0].lower()
   tscpy = tscpy.split(' ', 1)[0]
-  tscpy = tscpy.split('(', 1)[0]
+  tscpy = re.sub(r'[^\W]+', '', tscpy)
   tscpy = f'#{tscpy}'
   text+= tscpy
   get = await bot.get_messages(channel, ids=4)
