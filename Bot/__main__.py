@@ -51,7 +51,7 @@ async def get_red_hash(name):
   else:
     hep = re.sub(r'[^\W]+', '', hek[0].lower())
     to_return = f'#{hep}'
-    repa = re.sub(r'[^\W]+', '', ani.lower())
+    repa = re.sub('[^\W]+', '', ani.lower())
     nime = f'#{repa}'
     to_return = to_return + ' ' + nime 
     get = await bot.get_messages(channel, ids=4)
@@ -81,7 +81,7 @@ async def get_dan_hash(characters, tscpy):
         text += ' '
   tscpy = tscpy.split('(', 1)[0].lower()
   tscpy = tscpy.split(' ', 1)[0]
-  tscpy = re.sub(r'[^\W]+', '', tscpy)
+  tscpy = re.sub('[^\W]+', '', tscpy)
   tscpy = f'#{tscpy}'
   text+= tscpy
   get = await bot.get_messages(channel, ids=4)
