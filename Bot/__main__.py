@@ -138,11 +138,14 @@ async def danparse():
   posts = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
   res = []
   for post in posts:
-    if post['file_url'] != last_dan:
-      hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
-      last_dan = post['file_url']
-      dl = down(post['file_url'], hashes)
-      res = [dl, hashes, post['file_url']]
+    try:
+      if post['file_url'] != last_dan:
+        hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
+        last_dan = post['file_url']
+        dl = down(post['file_url'], hashes)
+        res = [dl, hashes, post['file_url']]
+    except KeyError:
+      pass
   return res
     
 
