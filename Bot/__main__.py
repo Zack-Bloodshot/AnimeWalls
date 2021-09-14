@@ -101,7 +101,7 @@ async def kang_reddit():
   new = subred.new(limit = 1)
   res = []
   async for i in new:
-    if not i.url == last_red:
+    if i.url != last_red:
       hashes = await get_red_hash(i.title)
       print(i.url)
       last_red = i.url 
