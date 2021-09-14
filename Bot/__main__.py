@@ -110,6 +110,7 @@ async def kang_reddit():
       else:
         dl = down(i.url, hashes)
         res = [dl, hashes, i.url]
+        return res
   return res 
       
 async def danparse():
