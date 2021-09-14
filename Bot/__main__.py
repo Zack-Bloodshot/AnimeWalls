@@ -16,7 +16,7 @@ loop = asyncio.get_event_loop()
 last_red = ''
 last_dan = ''
 
-mylog = logging.getLogger('animewalls')
+mylog = logging.getLogger('Animewalls')
 
 #@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
 async def sendone(mikey):
@@ -49,9 +49,9 @@ async def get_red_hash(name):
     to_return = f'{hek[0]} #og'
     return to_return
   else:
-    hep = re.sub(r'[^\W]+', '', hek[0].lower())
+    hep = re.sub('[\W]+', '', hek[0].lower())
     to_return = f'#{hep}'
-    repa = re.sub('[^\W]+', '', ani.lower())
+    repa = re.sub('[\W]+', '', ani.lower())
     nime = f'#{repa}'
     to_return = to_return + ' ' + nime 
     get = await bot.get_messages(channel, ids=4)
@@ -75,13 +75,13 @@ async def get_dan_hash(characters, tscpy):
         u = u.split('(', )[0]
       except IndexError:
         u = u
-      u = re.sub(r'[^\W]+', '', u.lower())
+      u = re.sub('[\W]+', '', u.lower())
       if not u == '':
         text += f'#{u}'
         text += ' '
   tscpy = tscpy.split('(', 1)[0].lower()
   tscpy = tscpy.split(' ', 1)[0]
-  tscpy = re.sub('[^\W]+', '', tscpy)
+  tscpy = re.sub('[\W]+', '', tscpy)
   tscpy = f'#{tscpy}'
   text+= tscpy
   get = await bot.get_messages(channel, ids=4)
