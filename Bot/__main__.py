@@ -98,15 +98,18 @@ async def kang_reddit():
   global last_red
   subred = await reddit.subreddit("Animewallpaper")
   new = subred.new(limit = 1)
+  mylog.debug(f'Reddit-sub :{new}')
   res = []
   async for i in new:
     if i.url != last_red:
       hashes = await get_red_hash(i.title)
       print(i.url)
+      mylog.debug(f'Reddit-catch : {i.url}')
       last_red = i.url 
       if i.url[-3:] in ('jpg', 'png'):
         dl = down(i.url, hashes)
         res = [dl, hashes, i.url]
+        mylog.debug(f'Reddit-res: {res}')
         return res
   return res 
       
@@ -137,9 +140,9 @@ async def send_wall():
           result = await danparse()
         else:
           result = await kang_reddit()
+        mylog.info(f'Request: {result}')
         if len(result) < 3:
           mylog.info(f'Passed!, Didn\'t got info! Choice: {c}')
-          mylog.info(f'Request: {result}')
         else:
             try:
               await bot.send_message(channel, result[1], file=result[0])

@@ -4,7 +4,7 @@ from telethon import TelegramClient
 import logging 
 from pybooru import Danbooru
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.DEBUG)
 
 logger = logging.getLogger("__name__")
 
