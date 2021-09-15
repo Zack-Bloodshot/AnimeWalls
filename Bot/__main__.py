@@ -98,7 +98,6 @@ async def kang_reddit():
   global last_red
   subred = await reddit.subreddit("Animewallpaper")
   new = subred.new(limit = 1)
-  mylog.debug(f'Reddit-sub :{list(new)}')
   res = []
   async for i in new:
     if i.url != last_red:
