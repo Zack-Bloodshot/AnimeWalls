@@ -39,7 +39,7 @@ def down(url: str, hashes: str):
   return file_name
 
 async def get_red_hash(name):
-  channel = await bot.get_entity(f't.me/AnimeWallsForU')
+  #channel = await bot.get_entity(f't.me/AnimeWallsForU')
   hek = name.split('[', 1)
   try:
     ani = hek[1].split(']', 1)[0]
@@ -54,17 +54,17 @@ async def get_red_hash(name):
     repa = re.sub('[\W_]+', '', ani.lower())
     nime = f'#{repa}'
     to_return = to_return + ' ' + nime 
-    get = await bot.get_messages(channel, ids=4)
-    rtext = get.raw_text
-    spl = get.raw_text.split('The Walls here:\n', 1)[1]
-    if nime not in spl:
-      text = f'\n\t\t{nime}'
-      rtext += text 
-      await get.edit(rtext)
+    #get = await bot.get_messages(channel, ids=4)
+    #rtext = get.raw_text
+    #spl = get.raw_text.split('The Walls here:\n', 1)[1]
+    #if nime not in spl:
+      #text = f'\n\t\t{nime}'
+      #rtext += text 
+      #await get.edit(rtext)
     return to_return
 
 async def get_dan_hash(characters, tscpy):
-  channel = await bot.get_entity(f't.me/AnimeWallsForU')
+  #channel = await bot.get_entity(f't.me/AnimeWallsForU')
   chars = characters.split(" ")
   count = 0
   text = ''
@@ -84,14 +84,14 @@ async def get_dan_hash(characters, tscpy):
   tscpy = re.sub('[\W_]+', '', tscpy)
   tscpy = f'#{tscpy}'
   text+= tscpy
-  get = await bot.get_messages(channel, ids=4)
-  rtext = get.raw_text
-  spl = get.raw_text.split('The Walls here:\n', 1)[1]
+  #get = await bot.get_messages(channel, ids=4)
+  #rtext = get.raw_text
+  #spl = get.raw_text.split('The Walls here:\n', 1)[1]
   #spl2 = spl.split('\n')
-  if tscpy not in spl:
-      text = f'\n\t\t{tscpy}'
-      rtext += text 
-      await get.edit(rtext)
+  #if tscpy not in spl:
+  #    text = f'\n\t\t{tscpy}'
+  #    rtext += text 
+  #    await get.edit(rtext)
   return text
 
 async def kang_reddit():
