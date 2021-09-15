@@ -98,7 +98,7 @@ async def kang_reddit():
   global last_red
   subred = await reddit.subreddit("Animewallpaper")
   new = subred.new(limit = 1)
-  mylog.debug(f'Reddit-sub :{new}')
+  mylog.debug(f'Reddit-sub :{list(new)}')
   res = []
   async for i in new:
     if i.url != last_red:
@@ -111,6 +111,8 @@ async def kang_reddit():
         res = [dl, hashes, i.url]
         mylog.debug(f'Reddit-res: {res}')
         return res
+      else:
+        mylog.info(f'Twas Gallery: {i.url}')
   return res 
       
 async def danparse():
