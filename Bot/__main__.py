@@ -96,7 +96,6 @@ async def get_dan_hash(characters, tscpy):
 
 async def kang_reddit():
   global last_red
-  li = ['jpg', 'png']
   subred = await reddit.subreddit("Animewallpaper")
   new = subred.new(limit = 1)
   res = []
@@ -105,9 +104,7 @@ async def kang_reddit():
       hashes = await get_red_hash(i.title)
       print(i.url)
       last_red = i.url 
-      if i.url[-3:] not in li:
-        print('passing...')
-      else:
+      if i.url[-3:] in ('jpg', 'png'):
         dl = down(i.url, hashes)
         res = [dl, hashes, i.url]
         return res
