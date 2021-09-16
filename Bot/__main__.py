@@ -4,7 +4,7 @@ import asyncio
 import asyncpraw
 import requests
 import os
-from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
+from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError, ImageProcessFailedError
 import logging
 import random
 import re
@@ -147,7 +147,7 @@ async def send_wall():
         else:
             try:
               await bot.send_message(channel, result[1], file=result[0])
-            except PhotoSaveFileInvalidError:
+            except (PhotoSaveFileInvalidError or ImageProcessFailedError):
               try:
                 await bot.send_message(channel, result[1], file=result[2])
               except Exception:
