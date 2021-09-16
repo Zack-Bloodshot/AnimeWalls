@@ -105,7 +105,7 @@ async def kang_reddit():
       hashes = await get_red_hash(i.title)
       print(i.url)
       mylog.debug(f'Reddit-catch : {i.url}')
-      add_url(i.url) 
+      add_url(i.url, 'reddit') 
       if i.url[-3:] in ('jpg', 'png'):
         dl = down(i.url, hashes)
         res = [dl, hashes, i.url]
@@ -127,7 +127,7 @@ async def danparse():
     try:
       if check_exist(fu):
         hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
-        add_url(fu)
+        add_url(fu, 'danbooru')
         dl = down(fu, hashes)
         res = [dl, hashes, fu]
     except KeyError:
