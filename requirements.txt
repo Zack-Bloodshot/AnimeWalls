@@ -5,4 +5,5 @@ bs4
 python-dotenv
 hachoir
 pybooru
+redis
 pillow

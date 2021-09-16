@@ -1,5 +1,5 @@
 from telethon import events, Button
-from Bot import bot, API_ID, API_HASH, BOT_TOKEN, CLIENT_ID, CLIENT_SECRET, USER_AGENT, logger, dandan
+from Bot import bot, API_ID, API_HASH, BOT_TOKEN, CLIENT_ID, CLIENT_SECRET, USER_AGENT, logger, dandan, check_exist, add_url
 import asyncio
 import asyncpraw
 import requests
@@ -8,6 +8,7 @@ from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError, ImageProcess
 import logging
 import random
 import re
+from anime_list import the_list
 
 reddit = asyncpraw.Reddit(client_id = CLIENT_ID, client_secret = CLIENT_SECRET, user_agent = USER_AGENT)
 
@@ -100,11 +101,11 @@ async def kang_reddit():
   new = subred.new(limit = 1)
   res = []
   async for i in new:
-    if i.url != last_red:
+    if check_exist(i.url):
       hashes = await get_red_hash(i.title)
       print(i.url)
       mylog.debug(f'Reddit-catch : {i.url}')
-      last_red = i.url 
+      add_url(i.url) 
       if i.url[-3:] in ('jpg', 'png'):
         dl = down(i.url, hashes)
         res = [dl, hashes, i.url]
@@ -117,15 +118,17 @@ async def kang_reddit():
 async def danparse():
   global last_dan
   rndpg = random.randint(1, 1000)
-  posts = dandan.post_list(tags='rating:s', page=rndpg, limit=1)
+  tag = random.choice('rating:s', random.choice(the_list))
+  posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
   res = []
   for post in posts:
+    fu = post['file_url']
     try:
-      if post['file_url'] != last_dan:
+      if check_exist(fu):
         hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
-        last_dan = post['file_url']
-        dl = down(post['file_url'], hashes)
-        res = [dl, hashes, post['file_url']]
+        add_url(fu)
+        dl = down(fu, hashes)
+        res = [dl, hashes, fu]
     except KeyError:
       pass
   return res
