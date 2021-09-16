@@ -118,7 +118,8 @@ async def kang_reddit():
 async def danparse():
   global last_dan
   rndpg = random.randint(1, 1000)
-  tag = random.choice('rating:s', random.choice(the_list))
+  tag_choices = ['rating:s', f'{random.choice(the_list)']
+  tag = random.choice(tag_choices)
   posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
   res = []
   for post in posts:
