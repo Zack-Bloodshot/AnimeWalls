@@ -123,8 +123,8 @@ async def danparse():
   posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
   res = []
   for post in posts:
-    fu = post['file_url']
     try:
+      fu = post['file_url']
       if check_exist(fu):
         hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
         add_url(fu, 'danbooru')
@@ -151,7 +151,12 @@ async def send_wall():
         else:
             try:
               await bot.send_message(channel, result[1], file=result[0])
-            except (PhotoSaveFileInvalidError or ImageProcessFailedError):
+            except PhotoSaveFileInvalidError:
+              try:
+                await bot.send_message(channel, result[1], file=result[2])
+              except Exception:
+                print('Excepted!')
+            except ImageProcessFailedError:
               try:
                 await bot.send_message(channel, result[1], file=result[2])
               except Exception:
