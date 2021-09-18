@@ -116,23 +116,26 @@ async def kang_reddit():
   return res 
       
 async def danparse():
-  global last_dan
-  rndpg = random.randint(1, 1000)
-  tag_choices = ['rating:s', 'scenery', 'no_humans' , 'building', 'tree',  'cloud', 'power_lines', 'nature', 'forest', 'sky', f'{random.choice(the_list)}']
-  tag = random.choice(tag_choices)
-  posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
-  res = []
-  for post in posts:
-    try:
-      fu = post['file_url']
-      if check_exist(fu):
-        hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
-        add_url(fu, 'danbooru')
-        dl = down(fu, hashes)
-        res = [dl, hashes, fu]
-    except KeyError:
-      pass
-  return res
+  try:
+    global last_dan
+    rndpg = random.randint(1, 1000)
+    tag_choices = ['rating:s', 'scenery', 'no_humans' , 'building', 'tree',  'cloud', 'power_lines', 'nature', 'forest', 'sky', f'{random.choice(the_list)}']
+    tag = random.choice(tag_choices)
+    posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
+    res = []
+    for post in posts:
+      try:
+        fu = post['file_url']
+        if check_exist(fu):
+          hashes = await get_dan_hash(post['tag_string_character'], post['tag_string_copyright'])
+          add_url(fu, 'danbooru')
+          dl = down(fu, hashes)
+          res = [dl, hashes, fu]
+      except KeyError:
+        pass
+    return res
+  except Exception as e:
+    mylog.error(e)
     
 
 async def send_wall():
