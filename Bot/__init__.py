@@ -9,6 +9,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
+
 load_dotenv()
 
 API_ID= int(getenv("API_ID"))
