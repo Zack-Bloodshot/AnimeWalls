@@ -20,13 +20,6 @@ last_dan = ''
 
 mylog = logging.getLogger('Animewalls')
 
-#@bot.on(events.NewMessage(pattern='sendonetime', incoming=True))
-async def sendone(mikey):
-  channel = await bot.get_entity(f't.me/AnimeWallsForU')
-  text = 'The Walls here:\n\n\t\t#og'
-  await bot.send_message(channel, text)
-  #await bot.send_message(channel, text)
-
 def down(url: str, hashes: str):
   r = requests.get(url)
   file_name = hashes.replace('#', '')
@@ -120,7 +113,7 @@ async def danparse():
   try:
     global last_dan
     rndpg = random.randint(1, 1000)
-    tag_choices = ['rating:s', 'scenery', 'no_humans' , 'building', 'tree',  'cloud', 'power_lines', 'nature', 'forest', 'sky', f'{random.choice(the_list)}']
+    tag_choices = ['rating:safe', 'scenery', 'no_humans' , 'building', 'tree',  'cloud', 'power_lines', 'nature', 'forest', 'sky', f'{random.choice(the_list)}']
     tag = random.choice(tag_choices)
     posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
     res = []
@@ -140,7 +133,7 @@ async def danparse():
     
 
 async def send_wall():
-    channel = await bot.get_entity(f"t.me/AnimeWallsForU")
+    channel = await bot.get_entity(f"t.me/AnimeWallForU")
     last = ''
     while True:
         sources = ['danbooru', 'reddit']
