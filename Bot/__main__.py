@@ -114,7 +114,8 @@ async def danparse():
     global last_dan
     rndpg = random.randint(1, 1000)
     tag_choices = ['scenery', 'no_humans' , 'building', 'tree',  'cloud', 'power_lines', 'nature', 'forest', 'sky', f'{random.choice(the_list)}']
-    tag = f'{random.choice(tag_choices)} rating:safe' 
+    tag = f'{random.choice(the_list)}'
+    #tag = f'{random.choice(tag_choices)} rating:safe' 
     posts = dandan.post_list(tags=tag, page=rndpg, limit=1)
     res = []
     for post in posts:
