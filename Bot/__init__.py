@@ -5,6 +5,7 @@ import logging
 from pybooru import Danbooru
 from redis import StrictRedis
 
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
 logger = logging.getLogger("__name__")
