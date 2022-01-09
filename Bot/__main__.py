@@ -166,7 +166,7 @@ async def send_wall():
               mylog.info(f'Loop Info: Chose: {c}')
         except Exception as e:
           mylog.info(f'Loop failed: {e}')
-        await asyncio.sleep(60)    
+        await asyncio.sleep(360)    
         mylog.info("New Loop!")
 
 @bot.on(events.NewMessage(pattern="/start"))
