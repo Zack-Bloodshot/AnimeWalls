@@ -1,4 +1,4 @@
-[
+the_list = [
     "a_place_further_than_the_universe",
     "a_silent_voice_koe_no_katachi",
     "a_whisker_away",
