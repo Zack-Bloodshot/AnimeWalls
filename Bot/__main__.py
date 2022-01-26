@@ -26,6 +26,7 @@ import re
 from anime_list import the_list
 
 
+
 reddit = asyncpraw.Reddit(
     client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent=USER_AGENT
 )
