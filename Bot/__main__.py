@@ -37,6 +37,7 @@ last_dan = ""
 mylog = logging.getLogger("Animewalls")
 
 
+
 def down(url: str, hashes: str):
     r = requests.get(url)
     file_name = hashes.replace("#", "")
